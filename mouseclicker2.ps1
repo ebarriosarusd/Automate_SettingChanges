@@ -13,7 +13,7 @@ using System.Threading;
 using Microsoft.Win32;
 
 
-public class Clicker {
+public class WindowsEdit {
     [DllImport("user32.dll")]
     public static extern bool SetCursorPos(int x, int y);
 
@@ -59,6 +59,17 @@ public class Clicker {
     }
 }
 "@
+
+# [Clicker]::editRegistryKey('Software\Microsoft\Windows\CurrentVersion\Search\', "SearchboxTaskbarMode", 1)
+
+# [Clicker]::editRegistryKey('Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'TaskbarDa', 1)
+
+# [Clicker]::editRegistryKey('Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'TaskbarMn', 1)
+
+# [Clicker]::editRegistryKey('Software\Microsoft\TabletTip\1.7\', 'keyboardLayoutPreference', 0)
+[WindowsEdit]::editRegistryKey('Software\Microsoft\TabletTip\1.7\', 'TipbandDesiredVisibility', 0)
+[WindowsEdit]::editRegistryKey('Software\Microsoft\TabletTip\1.7\', 'UserKeyboardScalingFactor', 0)
+
 
 # #Opening Start Menu
 # [Clicker]::LeftClick(-1900, 1058)
