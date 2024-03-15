@@ -10,7 +10,7 @@ Add-Type @"
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Threading;
-using Windows.Win32;
+using Microsoft.Win32;
 
 
 public class Clicker {
@@ -30,9 +30,9 @@ public class Clicker {
     private const uint
     MOUSEEVENTF_RIGHTUP=0x10;
 
-    public static class Registry {
-    public static void editRegistryKey(string attribute, int value){
-        string RegistryPath=@"\SOFTWARE\Microsoft\TabletTip\1.7";
+
+    public static void editRegistryKey(string RegistryPath, string attribute, int value){
+        //string RegistryPath=@"\SOFTWARE\Microsoft\TabletTip\1.7";
 
         using (RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegistryPath, true)) // Must dispose key or use "using" keyword
         {
@@ -42,8 +42,6 @@ public class Clicker {
             }
         }
     }
-    }
-
     
     public static void LeftClick(int x , int y){
         SetCursorPos(x,y);
