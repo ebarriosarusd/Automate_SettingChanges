@@ -10,6 +10,8 @@ Add-Type @"
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Threading;
+using Windows.Win32;
+
 
 public class Clicker {
     [DllImport("user32.dll")]
