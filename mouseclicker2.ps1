@@ -10,7 +10,7 @@ Add-Type @"
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Threading;
-using Windows.Win32;
+using Microsoft.Win32;
 
 
 public class Clicker {
