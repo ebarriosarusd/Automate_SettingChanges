@@ -26,7 +26,21 @@ public class Clicker {
     private const uint 
     MOUSEEVENTF_RIGHTDOWN=0x08;
     private const uint
-    MOUSEEVENTF_RIGHTUP=0x010;
+    MOUSEEVENTF_RIGHTUP=0x10;
+
+    public static void editRegistryKey(string KeyName){
+        string RegistryPath=@"\KKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\TabletTip\1.7";
+        RegistryKey myKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Company\\Compfolder", true);
+
+        using (RegistryKey key = regKeyRoot.OpenSubKey(KeyName, true)) // Must dispose key or use "using" keyword
+        {
+            if (key != null)  // Must check for null key
+            {
+                key.SetValue(attribute, value);
+            }
+        }
+
+    }
 
     
     public static void LeftClick(int x , int y){
@@ -36,21 +50,31 @@ public class Clicker {
         Thread.Sleep(300); //.3 seconds
     }
 
-    public static void RightClick(){
+    public static void RightClick(int x, int y){
+        SetCursorPos(x,y);
+        Thread.Sleep(500);
         mouse_event(MOUSEEVENTF_RIGHTDOWN, 0,0,0,0);
         mouse_event(MOUSEEVENTF_RIGHTUP, 0,0,0,0);
+        Thread.Sleep(300);
     }
 }
 "@
 
-#Opening Start Menu
-[Clicker]::LeftClick(-1900, 1058)
+# #Opening Start Menu
+# [Clicker]::LeftClick(-1900, 1058)
 
-#Opening Settings
-[Clicker]::LeftClick(-1907,962)
+# #Opening Settings
+# [Clicker]::LeftClick(-1907,962)
 
-#Opening System Settings
-[Clicker]::LeftClick(-1299,262)
+# #Opening System Settings
+# [Clicker]::LeftClick(-1299,262)
 
-# #Turning Night Light Off/On
-[Clicker]::LeftClick(-1109,609)
+# # #Turning Night Light Off/On
+# [Clicker]::LeftClick(-1109,609)
+
+
+
+#Opening taskbar settings
+# [Clicker]::RightClick(957, 774)
+
+# start-process ms-settings:display
