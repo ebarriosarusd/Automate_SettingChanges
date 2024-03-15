@@ -28,18 +28,18 @@ public class Clicker {
     private const uint
     MOUSEEVENTF_RIGHTUP=0x10;
 
-    public static void editRegistryKey(string KeyName){
-        string RegistryPath=@"\KKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\TabletTip\1.7";
-        RegistryKey myKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Company\\Compfolder", true);
+    public static class Registry {
+    public static void editRegistryKey(string attribute, int value){
+        string RegistryPath=@"\SOFTWARE\Microsoft\TabletTip\1.7";
 
-        using (RegistryKey key = regKeyRoot.OpenSubKey(KeyName, true)) // Must dispose key or use "using" keyword
+        using (RegistryKey key = regKeyRoot.OpenSubKey(RegistryPath, true)) // Must dispose key or use "using" keyword
         {
             if (key != null)  // Must check for null key
             {
                 key.SetValue(attribute, value);
             }
         }
-
+    }
     }
 
     
